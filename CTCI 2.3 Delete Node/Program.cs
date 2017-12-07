@@ -19,16 +19,16 @@ namespace CTCI_2._3_Delete_Node
             int next = rnd.Next(10);
 
             Node n = GetNode(next, head);
-                        
+
             PrintNodes(head);
-            
+
             Console.WriteLine();
             Console.WriteLine("Deleting node " + next + " value " + n.Data);
             Console.WriteLine();
 
             DeleteNode(n);
-            
-            PrintNodes(head);
+
+            PrintNodes(head);                
 
             Console.ReadLine();
         }
@@ -41,7 +41,10 @@ namespace CTCI_2._3_Delete_Node
         //    The current node is now a clone of the next node.
         //    The next node is now orphaned. Garbage collection will
         //    delete it.
-        //        
+        //     
+        // Note:       This algo will not work on the last node of
+        //             a list.
+        //
         // Note:       This algo is a slight-of-hand trick. It doesn't
         //             actually delete the current node.
         // 
@@ -56,7 +59,9 @@ namespace CTCI_2._3_Delete_Node
         {
             if ((node_to_delete == null) || (node_to_delete.next == null))
             {
-                throw new Exception();
+                // Cannot delete the last node in the list.
+                // Should never receive null node to delete
+                throw new Exception("Can delete neither the last node in list, nor a null node.");
             }
 
             // copy next node's values over current node's
